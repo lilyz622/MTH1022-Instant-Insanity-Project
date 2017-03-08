@@ -56,8 +56,8 @@ public class PairList
 		while (i < validSubs.size() - 1)
 			for (int j=i+1; j < validSubs.size(); j++)
 			{
-				/* implements the condition(s) here */
-				System.out.println(validSubs.get(i), validSubs.get(j));
+				if (checkUnique(validSubs.get(i), validSubs.get(j)) == true))
+					System.out.println(validSubs.get(i), validSubs.get(j));
 			}
 	}
 	
@@ -114,4 +114,13 @@ public class PairList
 		return countB;
 	}
 	
+	public static boolean checkUnique(Pair thisPair, Pair otherPair)
+	{
+		String ver11 = thisPair.getBothColors(),
+			   ver21 = otherPair.getBothColors(),
+			   ver22 = otherPair.getColorsReverse();
+		if ((ver11.equals(ver21)) || (ver11.equals(ver22)))
+			return false;
+		else return true;
+	}
 }	
