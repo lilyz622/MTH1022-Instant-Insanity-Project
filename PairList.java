@@ -38,7 +38,7 @@ public class PairList
 			int countR = countRed(element),
 				countW = countWhite(element),
 				countG = countGreen(element),
-				countB = countBlue(elemenr);
+				countB = countBlue(element);
 				
 			if (countR == 2 &&
 				countW == 2 &&
