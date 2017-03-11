@@ -1,36 +1,31 @@
-public class Pair 
-{
-	char col1;
-	char col2;
+public class Pair {
+	
+	private char color1;
+	private char color2;
 
-	
-	public Pair(char one, char two)
-	{	
-		col1 = one;
-		col2 = two;
-	}
-	
-	
-	public char getColor1()
+	public Pair (char a, char b)
 	{
-		return col1;
+		color1 = a;
+		color2 = b;
 	}
 
-
-	public char getColor2()
-	{
-		return col2;
+	public char getColor1(){
+		return color1;
 	}
 
+	public char getColor2(){
+		return color2;
+	}
 
+	// Not sure if we need the methods below
 	public String getBothColors()
 	{
-		return col1+col2;
+		return color1+color2;
 	}
 
 	
 	public String getColorsReverse()
 	{	
-		return col2+col1;
+		return color2+color1;
 	}
 }
