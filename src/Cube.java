@@ -1,21 +1,30 @@
-public class Cube inherits Pair(??) 
-{
-	Pair lr = new Pair(); //left-right
-	Pair ud = new Pair(); //up-down means top-bottom
-	Pair fb = new Pair(); //front-back
+public class Cube {
 	
+	private Pair LR; 
+	private Pair UD;
+	private Pair FB;
 
-	public Cube(char l, char r, char u, char d, char f, char b)
-	{
-		lr = 
-		ud = 
-		fb = 
+	public Cube(Pair a, Pair b, Pair c){
+		LR = a;
+		UD = b;
+		FB = c;
 	}
 
+	public Pair getLeftRight(){
+		return LR;
+	}
+
+	public Pair getUpDown(){
+		return UD;
+	}
+
+	public Pair getFrontBack(){
+		return FB;
+	} 
 	
 	public Pair[] getCubePairs()
 	{
-		return {lr, ud, fb};
+		return {LR, UD, FB};
 	}
 }
 
