@@ -33,10 +33,10 @@ public class PairList {
 	public ArrayList<Pair[]> findAllValidSubgraphs(ArrayList<Pair[]> allSubgr) {
 		ArrayList<Pair[]> allValidSubgr = new ArrayList<Pair[]>();
 		for (Pair[] element : allSubgr) {
-			int countR = countRed(element), 
-					countW = countWhite(element), 
-					countG = countGreen(element),
-					countB = countBlue(element);
+			int countR = countColor(element, 'R'), 
+					countW = countColor(element, 'W'), 
+					countG = countColor(element, 'G'),
+					countB = countColor(element, 'B');
 
 			if (countR == 2 && countW == 2 && countG == 2 && countB == 2)
 				allValidSubgr.add(element);
@@ -52,9 +52,9 @@ public class PairList {
 		while (i < validSubs.size() - 1){
 			for (int j=i+1; j < validSubs.size(); j++)
 			{
-				if (checkUnique(validSubs.get(i), validSubs.get(j))){
-					//TODO: write toString() method for pairs
-					System.out.println(validSubs.get(i)+ validSubs.get(j));
+				if (checkUnique(validSubs.get(i), validSubs.get(j))){    
+				//wrong parameter here, validSubs.get(k) returns the element kth of the ArrayList, which is an ARRAY of pairs, not a pair of faces
+					System.out.println(validSubs.get(i)+ "," +validSubs.get(j));
 					Pair[][] solution = {validSubs.get(i),validSubs.get(j)};
 					solutions.add(solution);
 				}
@@ -64,65 +64,36 @@ public class PairList {
 		}
 	}
 
-	public static int countRed(Pair[] oneSubgr)
+	public static int countColor(Pair[] oneSubgr, char color)
 	{
-		int countR = 0;
+		int count = 0;
 		for (int i=0; i<oneSubgr.length; i++)
 		{
-			if (oneSubgr[i].getColor1() == 'R')
-				countR += 1;
-			if (oneSubgr[i].getColor2() == 'R')
-				countR += 1;
+			if (oneSubgr[i].getColor1() == color)
+				count += 1;
+			if (oneSubgr[i].getColor2() == color)
+				count += 1;
 		}
-		return countR;
+		return count;
 	}
 
-	public static int countWhite(Pair[] oneSubgr)
-	{
-		int countW = 0;
-		for (int i=0; i<oneSubgr.length; i++)
+	//still thinking to correct this method
+	/* public boolean checkUnique(Pair thisPair, Pair otherPair) {
+		if (thisPair and otherPair are from the same cube)
 		{
-			if (oneSubgr[i].getColor1() == 'W')
-				countW += 1;
-			if (oneSubgr[i].getColor2() == 'W')
-				countW += 1;
-		}
-		return countW;
-	}
-
-	public static int countGreen(Pair[] oneSubgr)
-	{
-		int countG = 0;
-		for (int i=0; i<oneSubgr.length; i++)
+			if (thisPair.equals(otherPair))
+				return false;
+			return true;
+		else 
 		{
-			if (oneSubgr[i].getColor1() == 'G')
-				countG += 1;
-			if (oneSubgr[i].getColor2() == 'G')
-				countG += 1;
-		}
-		return countG;
-	}
-
-	public static int countBlue(Pair[] oneSubgr)
-	{
-		int countB = 0;
-		for (int i=0; i<oneSubgr.length; i++)
-		{
-			if (oneSubgr[i].getColor1() == 'B')
-				countB += 1;
-			if (oneSubgr[i].getColor2() == 'B')
-				countB += 1;
-		}
-		return countB;
-	}
-
-	public static boolean checkUnique(Pair thisPair, Pair otherPair) {
-		String ver11 = thisPair.getBothColors(), 
+			String ver11 = thisPair.getBothColors(), 
 				ver21 = otherPair.getBothColors(),
 				ver22 = otherPair.getColorsReverse();
-		if ((ver11.equals(ver21)) || (ver11.equals(ver22)))
-			return false;
-		else
-			return true;
-	}
+			if ((ver11.equals(ver21)) || (ver11.equals(ver22)))
+				return false;
+			else
+				return true;
+		}
+		}	
+	} */
 }
