@@ -30,10 +30,7 @@ public class Cube
 		return {LR, UD, FB};
 	}
 	
-	//trying to implement some kind of linked list structure to the list of pairs, 
-	//so that each pair has an identifier different from its own data,
-	//which can later be called on to compare Pair with Pair in the PairList.checkUnique() method
-	
+	//Don't think we need linked list anymore.
 	/* public Node getCubePairs(this.getCubePairs())
 	{
 		Node head, newNode;

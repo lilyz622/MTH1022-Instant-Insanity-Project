@@ -4,7 +4,8 @@ public class PairList {
 
 	/*
 	 * returns a list of all subgraphs. A subgraph at this stage is strictly
-	 * defined as an ordered combination of one pair of each cube
+	 * defined as an ordered combination of one pair of each cube, i.e.
+	 * each cube contributes at most one edge or one loop.
 	 */
 	public ArrayList<Pair[]> createSubgraphs(Cube c1, Cube c2, Cube c3, Cube c4)
 	{
@@ -29,7 +30,11 @@ public class PairList {
 		}
 		return allSubgr;
 	}
-
+	
+	/**
+	 * returns a list of all valid subgraphs. A valid subgraph is herein defined as 
+	 * a two-degree graph having at most one edge (or loop) from each cube.  
+	 */
 	public ArrayList<Pair[]> findAllValidSubgraphs(ArrayList<Pair[]> allSubgr) {
 		ArrayList<Pair[]> allValidSubgr = new ArrayList<Pair[]>();
 		for (Pair[] element : allSubgr) {
@@ -44,7 +49,14 @@ public class PairList {
 		return allValidSubgr;
 	}
 
-	public void findAllSolutions(ArrayList<Pair[]> validSubs)
+	/**
+	 * returns a list of graph-wise solutions, which are couples of valid subgraphs.
+	 * A graph-wise solution can be used to construct a final solution, which is the 
+	 * particular arrangement of the four cubes that win the challenge.
+	 * @param a list of all valid subgraphs
+	 * @return a list of all graph solutions 
+	 */
+	public ArrayList<Pair[][]> findGraphsSolutions(ArrayList<Pair[]> validSubs)
 	{
 		// ArrayList of solutions, which are couples of valid subgraphs
 		ArrayList<Pair[][]> solutions = new ArrayList<Pair[][]>();
@@ -52,9 +64,8 @@ public class PairList {
 		while (i < validSubs.size() - 1){
 			for (int j=i+1; j < validSubs.size(); j++)
 			{
-				if (checkUnique(validSubs.get(i), validSubs.get(j))){    
+				if (checkEdgeDisjoint(validSubs.get(i), validSubs.get(j))){    
 				//wrong parameter here, validSubs.get(k) returns the element kth of the ArrayList, which is an ARRAY of pairs, not a pair of faces
-					System.out.println(validSubs.get(i)+ "," +validSubs.get(j));
 					Pair[][] solution = {validSubs.get(i),validSubs.get(j)};
 					solutions.add(solution);
 				}
@@ -64,7 +75,12 @@ public class PairList {
 		}
 	}
 
-	public static int countColor(Pair[] oneSubgr, char color)
+	/**
+	 * counts the degree of a graph's vertex
+	 * @param oneSubgr: a graph, color: a vertex
+	 * @return the degree of the specified vertex
+	 */
+	private int countColor(Pair[] oneSubgr, char color)
 	{
 		int count = 0;
 		for (int i=0; i<oneSubgr.length; i++)
@@ -77,8 +93,24 @@ public class PairList {
 		return count;
 	}
 
-	//still thinking to correct this method
-	/* public boolean checkUnique(Pair thisPair, Pair otherPair) {
+	/**
+	 * checks if the two subgraphs passed in as parameters are edge-disjoint.
+	 * Edge-disjoint graphs have no edges in common.
+	 * @param two subgraphs
+	 * @return false if there exists a common edge; true otherwise.
+	 */
+	private boolean checkEdgeDisjoint(Pair[] subGr1, Pair[] subGr2) {
+		for (int i=0; i < subGr1.length; i++)
+		{
+			if (subGr1[i].equals(subGr2[i]))  
+			//compare a Pair object with a Pair object by their addresses. 
+			//We already know same index means same cube, so we check to make sure no cube contributes a single edge to two different subgraphs, 
+			//since a Pair in the solution cannot be both, say, a top-bottom and a left-right, of the same cube at the same time.
+				return false;
+		}
+		return true;
+	}
+		/* THE FOLLOWING LINES CAN BE DELETED ONCE THE ABOVE CODE WORKS CORRECTLY:
 		if (thisPair and otherPair are from the same cube)
 		{
 			if (thisPair.equals(otherPair))
