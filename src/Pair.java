@@ -1,25 +1,25 @@
 public class Pair 
 {
-	char col1;
-	char col2;
+	private char color1;
+	private char color2;
 
 	
-	public Pair(char one, char two)
+	public Pair(char a, char b)
 	{	
-		col1 = one;
-		col2 = two;
+		color1 = a;
+		color2 = b;
 	}
 	
 	
 	public char getColor1()
 	{
-		return col1;
+		return color1;
 	}
 
 
 	public char getColor2()
 	{
-		return col2;
+		return color2;
 	}
 
 
@@ -32,5 +32,10 @@ public class Pair
 	public String getColorsReverse()
 	{	
 		return col2+col1;
+	}
+	
+	public String toString()
+	{
+		return " " +col1+ "-" +col2+ " ";
 	}
 }
