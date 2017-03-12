@@ -1,3 +1,4 @@
+
 public class Pair 
 {
 	private char color1;
@@ -10,9 +11,8 @@ public class Pair
 		color2 = b;
 	}
 	
-	
-	public char getColor1()
-	{
+
+	public char getColor1(){
 		return color1;
 	}
 
@@ -22,20 +22,19 @@ public class Pair
 		return color2;
 	}
 
-
+	// Not sure if we need the methods below
 	public String getBothColors()
 	{
-		return col1+col2;
+		return color1+color2;
 	}
 
-	
 	public String getColorsReverse()
 	{	
-		return col2+col1;
+		return color2+color1;
 	}
-	
+
 	public String toString()
 	{
-		return " " +col1+ "-" +col2+ " ";
+		return " " +color1+ "-" +color2+ " ";
 	}
 }
