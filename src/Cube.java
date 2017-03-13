@@ -27,23 +27,9 @@ public class Cube
 	
 	public Pair[] getCubePairs()
 	{
-		return {LR, UD, FB};
+		Pair [] cubepairs = {LR, UD, FB};
+		return cubepairs;
 	}
-	
-	//Don't think we need linked list anymore.
-	/* public Node getCubePairs(this.getCubePairs())
-	{
-		Node head, newNode;
-		head = null;
-		for (int i= 2; i >= 0; i--)
-		{
-			newNode = new Node();
-			newNode.info = this.getCubePairs()[i];
-			newNode.link = head;
-			head = newNode;
-		}
-		return head;
-	} */
 }
 
 
