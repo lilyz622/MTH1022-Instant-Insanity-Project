@@ -110,22 +110,4 @@ public class PairList {
 		}
 		return true;
 	}
-		/* THE FOLLOWING LINES CAN BE DELETED ONCE THE ABOVE CODE WORKS CORRECTLY:
-		if (thisPair and otherPair are from the same cube)
-		{
-			if (thisPair.equals(otherPair))
-				return false;
-			return true;
-		else 
-		{
-			String ver11 = thisPair.getBothColors(), 
-				ver21 = otherPair.getBothColors(),
-				ver22 = otherPair.getColorsReverse();
-			if ((ver11.equals(ver21)) || (ver11.equals(ver22)))
-				return false;
-			else
-				return true;
-		}
-		}	
-	} */
 }
