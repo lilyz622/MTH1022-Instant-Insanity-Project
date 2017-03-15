@@ -21,19 +21,6 @@ public class Pair
 		return color2;
 	}
 
-	// Not sure if we need the methods below
-	public String getBothColors()
-	{
-		String both = ""+color1+color2;
-		return both;
-	}
-
-	public String getColorsReverse()
-	{	
-		String reverse = ""+color2+color1;
-		return reverse;
-	}
-
 	public String toString()
 	{
 		return " " +color1+ "-" +color2+ " ";
