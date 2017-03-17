@@ -150,7 +150,7 @@ public class PairList {
 		String str = "";
 		for (Pair[] element : matrx)
 		{
-			str += toString(element) + "\n";
+			str += toString(element) + "   &&   ";
 		}
 		return str;
 	}

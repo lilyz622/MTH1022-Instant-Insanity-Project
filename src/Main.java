@@ -4,6 +4,7 @@ public class Main {
 public static void main(String[] args) {
 	
 	ImageIcon cubepic = new ImageIcon("Cubes.jpg");
+	
 	JOptionPane.showMessageDialog(null, 
 							      "This program is designed to determine any\n"
 							      + "solutions to the Four Cubes Puzzle, given\n"
@@ -13,213 +14,124 @@ public static void main(String[] args) {
 							      + "of a given cube. This will be done in pairs of\n"
 							      + "characters representing the colors of (6) faces\n"
 							      + "or (3) pairs of colors on a given cube, for a\n"
-							      + "total of (4) cubes.\n"
+							      + "total of (4) cubes.\n\n\n"
 							      + "Press OK to continue or Cancel to exit.",
 								  "THE FOUR CUBES", 
 								  JOptionPane.OK_CANCEL_OPTION, cubepic);
 
 	char inputColorA;
 	char inputColorB;
+	String value1 = null,
+		   value2 = null,
+		   value3 = null;
+	String [] possibilities = {"WW", "WG", "WB", "WR",
+			  				   "GW", "GG", "GB", "GR",					
+			  				   "BW", "BG", "BB", "BR",
+			  				   "RW", "RG", "RB", "RR"};
 	
-	Object[] possibilities = {"WW", "WG", "WB", "WR",
-							  "GW", "GG", "GB", "GR",					
-							  "BW", "BG", "BB", "BR",
-							  "RW", "RG", "RB", "RR"};
+	JComboBox field1 = new JComboBox(possibilities);
+	JComboBox field2 = new JComboBox(possibilities);
+	JComboBox field3 = new JComboBox(possibilities);
+
 	
-	String option = (String)JOptionPane.showInputDialog(
-	                    null,
-	                    "Please enter Pair 1: ",
-	                    "Cube 1",
-	                    JOptionPane.QUESTION_MESSAGE,
-	                    cubepic,
-	                    possibilities,
-	                    possibilities[0]);
+	Object[] message = {	"Top-Bottom Pair: ", field1,
+							"Front-Back Pair: ", field2,
+							"Left-Right Pair: ", field3 };
 	
-	inputColorA = Character.toUpperCase(option.charAt(0));
-	inputColorB = Character.toUpperCase(option.charAt(1));
+	int X = JOptionPane.showConfirmDialog(null, message, "CUBE 1", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, cubepic);
+	if (X == JOptionPane.OK_OPTION)
+	{
+	    value1 = (String) field1.getSelectedItem();
+	    value2 = (String) field2.getSelectedItem();
+	    value3 = (String) field3.getSelectedItem();
+	}
 	
+	
+	inputColorA = Character.toUpperCase(value1.charAt(0));
+	inputColorB = Character.toUpperCase(value1.charAt(1));
 	Pair P1 = new Pair(inputColorA, inputColorB);
 	
-	/////////////////////////////////////////////
-	
-	option = (String)JOptionPane.showInputDialog(
-            null,
-            "Please enter Pair 2: ",
-            "Cube 1",
-            JOptionPane.QUESTION_MESSAGE,
-            cubepic,
-            possibilities,
-            possibilities[0]);
-
-	inputColorA = Character.toUpperCase(option.charAt(0));
-	inputColorB = Character.toUpperCase(option.charAt(1));
-	
+	inputColorA = Character.toUpperCase(value2.charAt(0));
+	inputColorB = Character.toUpperCase(value2.charAt(1));
 	Pair P2 = new Pair(inputColorA, inputColorB);
 	
-	/////////////////////////////////////////////
-	
-	option = (String)JOptionPane.showInputDialog(
-            null,
-            "Please enter Pair 3: ",
-            "Cube 1",
-            JOptionPane.QUESTION_MESSAGE,
-            cubepic,
-            possibilities,
-            possibilities[0]);
-
-	inputColorA = Character.toUpperCase(option.charAt(0));
-	inputColorB = Character.toUpperCase(option.charAt(1));
-	
+	inputColorA = Character.toUpperCase(value3.charAt(0));
+	inputColorB = Character.toUpperCase(value3.charAt(1));
 	Pair P3 = new Pair(inputColorA, inputColorB);
 
 	Cube C1 = new Cube(P1, P2, P3);
 	
 	//////////////////////////////////////////////////////////////////////
 
-	option = (String)JOptionPane.showInputDialog(
-            null,
-            "Please enter Pair 1: ",
-            "Cube 2",
-            JOptionPane.QUESTION_MESSAGE,
-            cubepic,
-            possibilities,
-            possibilities[0]);
-
-	inputColorA = Character.toUpperCase(option.charAt(0));
-	inputColorB = Character.toUpperCase(option.charAt(1));
-
+	X = JOptionPane.showConfirmDialog(null, message, "CUBE 2", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, cubepic);
+	if (X == JOptionPane.OK_OPTION)
+	{
+		value1 = (String) field1.getSelectedItem();
+	    value2 = (String) field2.getSelectedItem();
+	    value3 = (String) field3.getSelectedItem();
+	}
+	
+	
+	inputColorA = Character.toUpperCase(value1.charAt(0));
+	inputColorB = Character.toUpperCase(value1.charAt(1));
 	Pair P4 = new Pair(inputColorA, inputColorB);
-
-	/////////////////////////////////////////////
-
-	option = (String)JOptionPane.showInputDialog(
-		null,
-		"Please enter Pair 2: ",
-		"Cube 2",
-		JOptionPane.QUESTION_MESSAGE,
-		cubepic,
-		possibilities,
-		possibilities[0]);
-
-	inputColorA = Character.toUpperCase(option.charAt(0));
-	inputColorB = Character.toUpperCase(option.charAt(1));
-
+	
+	inputColorA = Character.toUpperCase(value2.charAt(0));
+	inputColorB = Character.toUpperCase(value2.charAt(1));
 	Pair P5 = new Pair(inputColorA, inputColorB);
-
-	/////////////////////////////////////////////
-
-	option = (String)JOptionPane.showInputDialog(
-		null,
-		"Please enter Pair 3: ",
-		"Cube 2",
-		JOptionPane.QUESTION_MESSAGE,
-		cubepic,
-		possibilities,
-		possibilities[0]);
-
-	inputColorA = Character.toUpperCase(option.charAt(0));
-	inputColorB = Character.toUpperCase(option.charAt(1));
-
+	
+	inputColorA = Character.toUpperCase(value3.charAt(0));
+	inputColorB = Character.toUpperCase(value3.charAt(1));
 	Pair P6 = new Pair(inputColorA, inputColorB);
 	
 	Cube C2 = new Cube(P4, P5, P6);
 	
 	//////////////////////////////////////////////////////////////////////////
 	
-	option = (String)JOptionPane.showInputDialog(
-            null,
-            "Please enter Pair 1: ",
-            "Cube 3",
-            JOptionPane.QUESTION_MESSAGE,
-            cubepic,
-            possibilities,
-            possibilities[0]);
-
-	inputColorA = Character.toUpperCase(option.charAt(0));
-	inputColorB = Character.toUpperCase(option.charAt(1));
-
+	X = JOptionPane.showConfirmDialog(null, message, "CUBE 3", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, cubepic);
+	if (X == JOptionPane.OK_OPTION)
+	{
+		value1 = (String) field1.getSelectedItem();
+	    value2 = (String) field2.getSelectedItem();
+	    value3 = (String) field3.getSelectedItem();
+	}
+	
+	
+	inputColorA = Character.toUpperCase(value1.charAt(0));
+	inputColorB = Character.toUpperCase(value1.charAt(1));
 	Pair P7 = new Pair(inputColorA, inputColorB);
-
-	/////////////////////////////////////////////
-
-	option = (String)JOptionPane.showInputDialog(
-		null,
-		"Please enter Pair 2: ",
-		"Cube 3",
-		JOptionPane.QUESTION_MESSAGE,
-		cubepic,
-		possibilities,
-		possibilities[0]);
-
-	inputColorA = Character.toUpperCase(option.charAt(0));
-	inputColorB = Character.toUpperCase(option.charAt(1));
-
+	
+	inputColorA = Character.toUpperCase(value2.charAt(0));
+	inputColorB = Character.toUpperCase(value2.charAt(1));
 	Pair P8 = new Pair(inputColorA, inputColorB);
-
-	/////////////////////////////////////////////
-
-	option = (String)JOptionPane.showInputDialog(
-		null,
-		"Please enter Pair 3: ",
-		"Cube 3",
-		JOptionPane.QUESTION_MESSAGE,
-		cubepic,
-		possibilities,
-		possibilities[0]);
-
-	inputColorA = Character.toUpperCase(option.charAt(0));
-	inputColorB = Character.toUpperCase(option.charAt(1));
-
+	
+	inputColorA = Character.toUpperCase(value3.charAt(0));
+	inputColorB = Character.toUpperCase(value3.charAt(1));
 	Pair P9 = new Pair(inputColorA, inputColorB);
 	
 	Cube C3 = new Cube(P7, P8, P9);
 	
 	/////////////////////////////////////////////////////////////////
 	
-	option = (String)JOptionPane.showInputDialog(
-            null,
-            "Please enter Pair 1: ",
-            "Cube 4",
-            JOptionPane.QUESTION_MESSAGE,
-            cubepic,
-            possibilities,
-            possibilities[0]);
-
-	inputColorA = Character.toUpperCase(option.charAt(0));
-	inputColorB = Character.toUpperCase(option.charAt(1));
-
+	X = JOptionPane.showConfirmDialog(null, message, "CUBE 4", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, cubepic);
+	if (X == JOptionPane.OK_OPTION)
+	{
+		value1 = (String) field1.getSelectedItem();
+	    value2 = (String) field2.getSelectedItem();
+	    value3 = (String) field3.getSelectedItem();
+	}
+	
+	
+	inputColorA = Character.toUpperCase(value1.charAt(0));
+	inputColorB = Character.toUpperCase(value1.charAt(1));
 	Pair P10 = new Pair(inputColorA, inputColorB);
-
-	/////////////////////////////////////////////
 	
-	option = (String)JOptionPane.showInputDialog(
-		null,
-		"Please enter Pair 2: ",
-		"Cube 4",
-		JOptionPane.QUESTION_MESSAGE,
-		cubepic,
-		possibilities,
-		possibilities[0]);
-
-	inputColorA = Character.toUpperCase(option.charAt(0));
-	inputColorB = Character.toUpperCase(option.charAt(1));
-
+	inputColorA = Character.toUpperCase(value2.charAt(0));
+	inputColorB = Character.toUpperCase(value2.charAt(1));
 	Pair P11 = new Pair(inputColorA, inputColorB);
-
-	/////////////////////////////////////////////
 	
-	option = (String)JOptionPane.showInputDialog(
-		null,
-		"Please enter Pair 3: ",
-		"Cube 4",
-		JOptionPane.QUESTION_MESSAGE,
-		cubepic,
-		possibilities,
-		possibilities[0]);
-
-	inputColorA = Character.toUpperCase(option.charAt(0));
-	inputColorB = Character.toUpperCase(option.charAt(1));
-
+	inputColorA = Character.toUpperCase(value3.charAt(0));
+	inputColorB = Character.toUpperCase(value3.charAt(1));
 	Pair P12 = new Pair(inputColorA, inputColorB);
 	
 	Cube C4 = new Cube(P10, P11, P12);
@@ -234,8 +146,10 @@ public static void main(String[] args) {
 	ArrayList<Pair[]> allValidSub = PairList.findAllValidSubgraphs(allsub);
 	ArrayList<Pair[][]> sol = PairList.findGraphsSolutions(allValidSub);
 	
-	System.out.println("ALL SOLUTIONS: " );
-	System.out.println(PairList.matrixToString(sol));
-	
+	JOptionPane.showMessageDialog(null, 
+								  PairList.matrixToString(sol), 
+								  "POSSIBLE SOLUTIONS", 
+								  JOptionPane.INFORMATION_MESSAGE, 
+								  cubepic);
 	}
 }
