@@ -7,7 +7,7 @@ public class PairList {
 	 * defined as an ordered combination of one pair of each cube, i.e.
 	 * each cube contributes at most one edge or one loop.
 	 */
-	public ArrayList<Pair[]> createSubgraphs(Cube c1, Cube c2, Cube c3, Cube c4)
+	public static ArrayList<Pair[]> createSubgraphs(Cube c1, Cube c2, Cube c3, Cube c4)
 	{
 		ArrayList<Pair[]> allSubgr = new ArrayList<Pair[]>();
 		for (int i=0; i<3; i++)
@@ -24,6 +24,7 @@ public class PairList {
 					{
 						oneSubgr[3] = c4.getCubePairs()[k];
 						allSubgr.add(oneSubgr);
+						oneSubgr = new Pair[]{c1.getCubePairs()[i],c2.getCubePairs()[j],c3.getCubePairs()[h],c4.getCubePairs()[k]};
 					}
 				}
 			}
@@ -35,16 +36,18 @@ public class PairList {
 	 * returns a list of all valid subgraphs. A valid subgraph is herein defined as 
 	 * a two-degree graph having at most one edge (or loop) from each cube.  
 	 */
-	public ArrayList<Pair[]> findAllValidSubgraphs(ArrayList<Pair[]> allSubgr) {
+	public static ArrayList<Pair[]> findAllValidSubgraphs(ArrayList<Pair[]> allSubgr) {
 		ArrayList<Pair[]> allValidSubgr = new ArrayList<Pair[]>();
 		for (Pair[] element : allSubgr) {
-			int countR = countColor(element, 'R'), 
+				int countR = countColor(element, 'R'), 
 					countW = countColor(element, 'W'), 
 					countG = countColor(element, 'G'),
 					countB = countColor(element, 'B');
 
 			if (countR == 2 && countW == 2 && countG == 2 && countB == 2)
+			{
 				allValidSubgr.add(element);
+			}
 		}
 		return allValidSubgr;
 	}
@@ -56,7 +59,7 @@ public class PairList {
 	 * @param a list of all valid subgraphs
 	 * @return a list of all graph solutions 
 	 */
-	public ArrayList<Pair[][]> findGraphsSolutions(ArrayList<Pair[]> validSubs)
+	public static ArrayList<Pair[][]> findGraphsSolutions(ArrayList<Pair[]> validSubs)
 	{
 		// ArrayList of solutions, which are couples of valid subgraphs
 		ArrayList<Pair[][]> solutions = new ArrayList<Pair[][]>();
@@ -81,7 +84,7 @@ public class PairList {
 	 * @param oneSubgr: a graph, color: a vertex
 	 * @return the degree of the specified vertex
 	 */
-	private int countColor(Pair[] oneSubgr, char color)
+	static int countColor(Pair[] oneSubgr, char color)
 	{
 		int count = 0;
 		for (int i=0; i<oneSubgr.length; i++)
@@ -100,7 +103,7 @@ public class PairList {
 	 * @param two subgraphs
 	 * @return false if there exists a common edge; true otherwise.
 	 */
-	private boolean checkEdgeDisjoint(Pair[] subGr1, Pair[] subGr2) {
+	private static boolean checkEdgeDisjoint(Pair[] subGr1, Pair[] subGr2) {
 		for (int i=0; i < subGr1.length; i++)
 		{
 			if (subGr1[i].equals(subGr2[i]))  
@@ -111,4 +114,45 @@ public class PairList {
 		}
 		return true;
 	}
+
+	public static String toString(Pair [] arr)
+	{
+		String str = "";
+			for (Pair element : arr)
+				{
+				str += element.toString() + " | ";
+				}
+		return str;
+	}
+
+	public static String toString(ArrayList<Pair[]> arrLi)
+		{
+			String str = "";
+				for (Pair[] element : arrLi)
+				{
+					str += toString(element) + " | ";
+					
+				}
+		return str;
+	}
+	
+	public static String matrixToString(ArrayList<Pair[][]> arrLi)
+	{
+		String str = "";
+		for (Pair[][] element : arrLi){
+			str+= toString(element) + " | ";
+		}
+		return str;
+	}
+	
+	private static String toString(Pair[][] matrx)
+	{
+		String str = "";
+		for (Pair[] element : matrx)
+		{
+			str += toString(element) + "\n";
+		}
+		return str;
+	}
+	
 }

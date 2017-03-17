@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.util.*;
 public class Main {
 public static void main(String[] args) {
 	
@@ -12,7 +13,7 @@ public static void main(String[] args) {
 							      + "of a given cube. This will be done in pairs of\n"
 							      + "characters representing the colors of (6) faces\n"
 							      + "or (3) pairs of colors on a given cube, for a\n"
-							      + "total of (4) cubes."
+							      + "total of (4) cubes.\n"
 							      + "Press OK to continue or Cancel to exit.",
 								  "THE FOUR CUBES", 
 								  JOptionPane.OK_CANCEL_OPTION, cubepic);
@@ -34,8 +35,8 @@ public static void main(String[] args) {
 	                    possibilities,
 	                    possibilities[0]);
 	
-	inputColorA = option.charAt(0);
-	inputColorB = option.charAt(1);
+	inputColorA = Character.toUpperCase(option.charAt(0));
+	inputColorB = Character.toUpperCase(option.charAt(1));
 	
 	Pair P1 = new Pair(inputColorA, inputColorB);
 	
@@ -50,8 +51,8 @@ public static void main(String[] args) {
             possibilities,
             possibilities[0]);
 
-	inputColorA = option.charAt(0);
-	inputColorB = option.charAt(1);
+	inputColorA = Character.toUpperCase(option.charAt(0));
+	inputColorB = Character.toUpperCase(option.charAt(1));
 	
 	Pair P2 = new Pair(inputColorA, inputColorB);
 	
@@ -66,15 +67,15 @@ public static void main(String[] args) {
             possibilities,
             possibilities[0]);
 
-	inputColorA = option.charAt(0);
-	inputColorB = option.charAt(1);
+	inputColorA = Character.toUpperCase(option.charAt(0));
+	inputColorB = Character.toUpperCase(option.charAt(1));
 	
 	Pair P3 = new Pair(inputColorA, inputColorB);
 
 	Cube C1 = new Cube(P1, P2, P3);
 	
 	//////////////////////////////////////////////////////////////////////
-	
+
 	option = (String)JOptionPane.showInputDialog(
             null,
             "Please enter Pair 1: ",
@@ -84,8 +85,8 @@ public static void main(String[] args) {
             possibilities,
             possibilities[0]);
 
-	inputColorA = option.charAt(0);
-	inputColorB = option.charAt(1);
+	inputColorA = Character.toUpperCase(option.charAt(0));
+	inputColorB = Character.toUpperCase(option.charAt(1));
 
 	Pair P4 = new Pair(inputColorA, inputColorB);
 
@@ -100,8 +101,8 @@ public static void main(String[] args) {
 		possibilities,
 		possibilities[0]);
 
-	inputColorA = option.charAt(0);
-	inputColorB = option.charAt(1);
+	inputColorA = Character.toUpperCase(option.charAt(0));
+	inputColorB = Character.toUpperCase(option.charAt(1));
 
 	Pair P5 = new Pair(inputColorA, inputColorB);
 
@@ -116,8 +117,8 @@ public static void main(String[] args) {
 		possibilities,
 		possibilities[0]);
 
-	inputColorA = option.charAt(0);
-	inputColorB = option.charAt(1);
+	inputColorA = Character.toUpperCase(option.charAt(0));
+	inputColorB = Character.toUpperCase(option.charAt(1));
 
 	Pair P6 = new Pair(inputColorA, inputColorB);
 	
@@ -134,8 +135,8 @@ public static void main(String[] args) {
             possibilities,
             possibilities[0]);
 
-	inputColorA = option.charAt(0);
-	inputColorB = option.charAt(1);
+	inputColorA = Character.toUpperCase(option.charAt(0));
+	inputColorB = Character.toUpperCase(option.charAt(1));
 
 	Pair P7 = new Pair(inputColorA, inputColorB);
 
@@ -150,8 +151,8 @@ public static void main(String[] args) {
 		possibilities,
 		possibilities[0]);
 
-	inputColorA = option.charAt(0);
-	inputColorB = option.charAt(1);
+	inputColorA = Character.toUpperCase(option.charAt(0));
+	inputColorB = Character.toUpperCase(option.charAt(1));
 
 	Pair P8 = new Pair(inputColorA, inputColorB);
 
@@ -166,8 +167,8 @@ public static void main(String[] args) {
 		possibilities,
 		possibilities[0]);
 
-	inputColorA = option.charAt(0);
-	inputColorB = option.charAt(1);
+	inputColorA = Character.toUpperCase(option.charAt(0));
+	inputColorB = Character.toUpperCase(option.charAt(1));
 
 	Pair P9 = new Pair(inputColorA, inputColorB);
 	
@@ -184,13 +185,13 @@ public static void main(String[] args) {
             possibilities,
             possibilities[0]);
 
-	inputColorA = option.charAt(0);
-	inputColorB = option.charAt(1);
+	inputColorA = Character.toUpperCase(option.charAt(0));
+	inputColorB = Character.toUpperCase(option.charAt(1));
 
 	Pair P10 = new Pair(inputColorA, inputColorB);
 
 	/////////////////////////////////////////////
-
+	
 	option = (String)JOptionPane.showInputDialog(
 		null,
 		"Please enter Pair 2: ",
@@ -200,13 +201,13 @@ public static void main(String[] args) {
 		possibilities,
 		possibilities[0]);
 
-	inputColorA = option.charAt(0);
-	inputColorB = option.charAt(1);
+	inputColorA = Character.toUpperCase(option.charAt(0));
+	inputColorB = Character.toUpperCase(option.charAt(1));
 
 	Pair P11 = new Pair(inputColorA, inputColorB);
 
 	/////////////////////////////////////////////
-
+	
 	option = (String)JOptionPane.showInputDialog(
 		null,
 		"Please enter Pair 3: ",
@@ -216,8 +217,8 @@ public static void main(String[] args) {
 		possibilities,
 		possibilities[0]);
 
-	inputColorA = option.charAt(0);
-	inputColorB = option.charAt(1);
+	inputColorA = Character.toUpperCase(option.charAt(0));
+	inputColorB = Character.toUpperCase(option.charAt(1));
 
 	Pair P12 = new Pair(inputColorA, inputColorB);
 	
@@ -228,6 +229,13 @@ public static void main(String[] args) {
 	/////////////////////////////////////////////
 	/////////////////////////////////////////////
 	/////////////////////////////////////////////
+	
+	ArrayList<Pair[]> allsub = PairList.createSubgraphs(C1,C2,C3,C4);
+	ArrayList<Pair[]> allValidSub = PairList.findAllValidSubgraphs(allsub);
+	ArrayList<Pair[][]> sol = PairList.findGraphsSolutions(allValidSub);
+	
+	System.out.println("ALL SOLUTIONS: " );
+	System.out.println(PairList.matrixToString(sol));
 	
 	}
 }
