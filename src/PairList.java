@@ -68,7 +68,6 @@ public class PairList {
 			for (int j=i+1; j < validSubs.size(); j++)
 			{
 				if (checkEdgeDisjoint(validSubs.get(i), validSubs.get(j))){    
-				//wrong parameter here, validSubs.get(k) returns the element kth of the ArrayList, which is an ARRAY of pairs, not a pair of faces
 					Pair[][] solution = {validSubs.get(i),validSubs.get(j)};
 					solutions.add(solution);
 				}
@@ -118,40 +117,40 @@ public class PairList {
 	public static String toString(Pair [] arr)
 	{
 		String str = "";
-			for (Pair element : arr)
-				{
-				str += element.toString() + " | ";
-				}
+		for (int i=0; i < arr.length-1; i++)
+		{
+			str += arr[i].toString() + " | ";
+		}
+		str += arr[arr.length-1];
 		return str;
 	}
 
 	public static String toString(ArrayList<Pair[]> arrLi)
 		{
 			String str = "";
-				for (Pair[] element : arrLi)
-				{
-					str += toString(element) + " | ";
-					
-				}
+			for (Pair[] element : arrLi)
+			{
+				str += (arrLi.indexOf(element)+1) + ". " + toString(element) +"\n";
+			}
+		System.out.println("There is/are " +arrLi.size()+ " valid subgraph(s)");
 		return str;
 	}
 	
 	public static String matrixToString(ArrayList<Pair[][]> arrLi)
 	{
 		String str = "";
-		for (Pair[][] element : arrLi){
-			str+= toString(element) + " | ";
+		for (Pair[][] element : arrLi)
+		{
+			str += (arrLi.indexOf(element)+1) + ". " +toString(element) + "\n";
 		}
+		System.out.println("There is/are " +arrLi.size()+ " graph solution(s)");
 		return str;
 	}
 	
 	private static String toString(Pair[][] matrx)
 	{
 		String str = "";
-		for (Pair[] element : matrx)
-		{
-			str += toString(element) + "   &&   ";
-		}
+		str += toString(matrx[0]) + " /// " + toString(matrx[1]);
 		return str;
 	}
 	
