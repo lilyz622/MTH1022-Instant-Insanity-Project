@@ -25,4 +25,11 @@ public class Pair
 	{
 		return " " +color1+ "-" +color2+ " ";
 	}
+	
+	@Override
+	public int hashCode() 
+	{
+		return color1+color2;
+	}
+
 }

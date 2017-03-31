@@ -1,6 +1,8 @@
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class PairList {
+	private static int HASH_CONSTANT = 23;
 
 	/*
 	 * returns a list of all subgraphs. A subgraph at this stage is strictly
@@ -63,19 +65,40 @@ public class PairList {
 	{
 		// ArrayList of solutions, which are couples of valid subgraphs
 		ArrayList<Pair[][]> solutions = new ArrayList<Pair[][]>();
+		HashSet<Integer> uniqueSolutions = new HashSet<Integer>();
 		int i=0;
 		while (i < validSubs.size() - 1){
 			for (int j=i+1; j < validSubs.size(); j++)
 			{
 				if (checkEdgeDisjoint(validSubs.get(i), validSubs.get(j))){    
+				//wrong parameter here, validSubs.get(k) returns the element kth of the ArrayList, which is an ARRAY of pairs, not a pair of faces
 					Pair[][] solution = {validSubs.get(i),validSubs.get(j)};
-					solutions.add(solution);
+					// only add solution if the solution is unique
+					if (!uniqueSolutions.contains(hashSolution(solution))){
+						solutions.add(solution);
+						uniqueSolutions.add(hashSolution(solution));
+					}
 				}
 				
 			}
 			i++;
 		}
 		return solutions;
+
+	}
+	
+	private static int hashSolution(Pair[][] solution) 
+	{
+		int hashCode = 0;
+		// first subgraph in solution
+		for (int i = 0; i<solution[0].length; i++){
+			hashCode = HASH_CONSTANT*hashCode+solution[0][i].hashCode();
+		}
+		// second subgraph in solution
+		for (int i = 0; i<solution[1].length; i++){
+			hashCode = HASH_CONSTANT*hashCode+solution[1][i].hashCode();
+		}
+		return hashCode;
 	}
 
 	/**
