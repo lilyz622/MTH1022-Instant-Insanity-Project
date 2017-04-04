@@ -71,7 +71,7 @@ public class PairList {
 			for (int j=i+1; j < validSubs.size(); j++)
 			{
 				if (checkEdgeDisjoint(validSubs.get(i), validSubs.get(j))){    
-				//wrong parameter here, validSubs.get(k) returns the element kth of the ArrayList, which is an ARRAY of pairs, not a pair of faces
+				//validSubs.get(k) returns the element kth of the ArrayList, which is an ARRAY of pairs, not a pair of faces
 					Pair[][] solution = {validSubs.get(i),validSubs.get(j)};
 					// only add solution if the solution is unique
 					if (!uniqueSolutions.contains(hashSolution(solution))){
