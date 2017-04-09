@@ -13,8 +13,7 @@ public class DisplaySolutions {
 	public int frameWidth;
 	public int frameHeight;
 	
-	
-	public DisplaySolutions(ArrayList<Pair[][]> solutions){
+	private ArrayList<Pair[][]> createTestSolutions(){
 		Pair[][] p = {
 				{new Pair('R','R'),new Pair('W','W'), new Pair('G','G')},
 				{new Pair('B','B'), new Pair('G','G'), new Pair('W','W')},
@@ -28,10 +27,16 @@ public class DisplaySolutions {
 				{new Pair('R','R'),new Pair('W','W'), new Pair('G','G')},
 				{new Pair('B','B'), new Pair('G','G'), new Pair('W','W')}
 		};
-		
 		ArrayList<Pair[][]> testSolutions = new ArrayList<Pair[][]>();
 		testSolutions.add(p);
 		testSolutions.add(p2);
+		return testSolutions;
+	}
+	
+	
+	public DisplaySolutions(ArrayList<Pair[][]> solutions){
+		// Create test solutions
+		ArrayList<Pair[][]> testSolutions = createTestSolutions();
 		
 		frameWidth = CUBE_WIDTH*(4*4+2);
 		frameHeight = CUBE_WIDTH*(6*2);
