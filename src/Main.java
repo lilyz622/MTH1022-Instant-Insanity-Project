@@ -2,10 +2,18 @@ import javax.swing.*;
 import java.util.*;
 
 public class Main{
+	private static Cube C1;
+	private static Cube C2;
+	private static Cube C3;
+	private static Cube C4;
+	
 	public static void main(String[] args){
 		JOptionPane ui = new JOptionPane();
 		ArrayList<Pair[][]> finalSolutions = DisplayIntro(ui);
-		DisplaySolutions s = new DisplaySolutions(finalSolutions);
+		Cube[] originalCubes = {C1, C2, C3, C4};
+		if (!finalSolutions.isEmpty()){
+			DisplaySolutions s = new DisplaySolutions(finalSolutions, originalCubes);
+		}
 		
 	}
 	
@@ -31,6 +39,11 @@ public class Main{
 		JComboBox field2 = new JComboBox(possibilities);
 		JComboBox field3 = new JComboBox(possibilities);
 
+		field1.setSelectedItem("GW");
+		field2.setSelectedItem("BR");
+		field3.setSelectedItem("BW");
+		
+		
 		Object[] message = { "Top-Bottom Pair: ", field1, "Front-Back Pair: ", field2, "Left-Right Pair: ", field3 };
 
 		int X = ui.showConfirmDialog(null, message, "CUBE 1", ui.OK_CANCEL_OPTION,
@@ -53,10 +66,14 @@ public class Main{
 		inputColorB = Character.toUpperCase(value3.charAt(1));
 		Pair P3 = new Pair(inputColorA, inputColorB);
 
-		Cube C1 = new Cube(P1, P2, P3);
+		C1 = new Cube(P1, P2, P3);
 
 		//////////////////////////////////////////////////////////////////////
 
+		field1.setSelectedItem("GR");
+		field2.setSelectedItem("WB");
+		field3.setSelectedItem("RW");
+		
 		X = ui.showConfirmDialog(null, message, "CUBE 2", ui.OK_CANCEL_OPTION,
 				ui.QUESTION_MESSAGE, cubepic);
 		if (X == ui.OK_OPTION) {
@@ -77,10 +94,14 @@ public class Main{
 		inputColorB = Character.toUpperCase(value3.charAt(1));
 		Pair P6 = new Pair(inputColorA, inputColorB);
 
-		Cube C2 = new Cube(P4, P5, P6);
+		C2 = new Cube(P4, P5, P6);
 
 		//////////////////////////////////////////////////////////////////////////
 
+		field1.setSelectedItem("RG");
+		field2.setSelectedItem("WG");
+		field3.setSelectedItem("BB");
+		
 		X = ui.showConfirmDialog(null, message, "CUBE 3", ui.OK_CANCEL_OPTION,
 				ui.QUESTION_MESSAGE, cubepic);
 		if (X == ui.OK_OPTION) {
@@ -101,10 +122,14 @@ public class Main{
 		inputColorB = Character.toUpperCase(value3.charAt(1));
 		Pair P9 = new Pair(inputColorA, inputColorB);
 
-		Cube C3 = new Cube(P7, P8, P9);
+		C3 = new Cube(P7, P8, P9);
 
 		/////////////////////////////////////////////////////////////////
 
+		field1.setSelectedItem("RB");
+		field2.setSelectedItem("GW");
+		field3.setSelectedItem("RR");
+		
 		X = ui.showConfirmDialog(null, message, "CUBE 4", ui.OK_CANCEL_OPTION,
 				ui.QUESTION_MESSAGE, cubepic);
 		if (X == ui.OK_OPTION) {
@@ -125,7 +150,7 @@ public class Main{
 		inputColorB = Character.toUpperCase(value3.charAt(1));
 		Pair P12 = new Pair(inputColorA, inputColorB);
 
-		Cube C4 = new Cube(P10, P11, P12);
+		C4 = new Cube(P10, P11, P12);
 
 		/////////////////////////////////////////////
 		/////////////////////////////////////////////

@@ -1,7 +1,9 @@
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.geom.Line2D;
 import java.util.ArrayList;
 
 import javax.swing.JComponent;
@@ -27,6 +29,8 @@ public class SolutionComponent extends JComponent {
 			return Color.GREEN;
 		case 'W':
 			return Color.WHITE;
+		case 'Z':
+			return Color.gray;
 		default:
 			return Color.BLACK;
 		}
@@ -55,11 +59,28 @@ public class SolutionComponent extends JComponent {
 		Rectangle r = new Rectangle(x, y, width, width);
 		g.setColor(this.charToColor(c));
 		g.fill(r);
+		
+		g.setStroke(new BasicStroke(5));
+		g.setColor(Color.BLACK);
+		// top
+		Line2D top = new Line2D.Float(x, y, x+this.cubeWidth, y);
+		g.draw(top);
+		// left
+		Line2D left = new Line2D.Float(x, y, x, y+this.cubeWidth);
+		g.draw(left);
+		// right
+		Line2D right = new Line2D.Float(x, y+this.cubeWidth, x+this.cubeWidth, y+this.cubeWidth);
+		g.draw(right);
+		// right
+		Line2D bottom = new Line2D.Float(x+this.cubeWidth, y, x+this.cubeWidth, y+this.cubeWidth);
+		g.draw(bottom);
+		
 	}
 
 	public void paintCube(Graphics2D g2, int x, int y, Pair[] cube) {
 		int curX = x;
 		int curY = y;
+		
 
 		curX += this.cubeWidth;
 		paintSquare(g2, curX, curY, this.cubeWidth, cube[0].getColor1());

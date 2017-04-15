@@ -161,6 +161,10 @@ public class PairList {
 	
 	public static String matrixToString(ArrayList<Pair[][]> arrLi)
 	{
+		if (arrLi.isEmpty()){
+			return "NO SOLUTIONS FOR THIS SET OF CUBES";
+		}
+		
 		String str = "";
 		for (Pair[][] element : arrLi)
 		{
