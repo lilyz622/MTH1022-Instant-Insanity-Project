@@ -9,10 +9,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-public class DisplaySolutions {
+public class DisplaySolutions extends JFrame{
 	public final int CUBE_WIDTH = 70;
 	public int frameWidth;
 	public int frameHeight;
+
 
 	public static void main(String[] args) {
 		DisplaySolutions d = new DisplaySolutions(null, null);
@@ -175,13 +176,12 @@ public class DisplaySolutions {
 		frameWidth = CUBE_WIDTH * (4 * 4 + 2);
 		frameHeight = CUBE_WIDTH * (6 * 2);
 
-		JFrame frame = new JFrame();
 		Image cubepic = (new ImageIcon("Cubes.jpg")).getImage();
-		frame.setIconImage(cubepic);
-		frame.setBackground(Color.BLACK);
-		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		frame.setTitle("Solutions");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setIconImage(cubepic);
+		setBackground(Color.BLACK);
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		setTitle("Solutions");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		SolutionComponent component = new SolutionComponent(outSolutions, CUBE_WIDTH);
 		Dimension preferredDim = new Dimension(frameWidth, frameHeight);
@@ -190,8 +190,8 @@ public class DisplaySolutions {
 		JPanel container = new JPanel();
 		container.add(component);
 		JScrollPane scrPane = new JScrollPane(container);
-		frame.add(scrPane);
-		frame.setVisible(true);
+		add(scrPane);
+		setVisible(true);
 	}
 
 }
